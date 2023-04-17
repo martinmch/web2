@@ -1,0 +1,15 @@
+title: "bchristiansen.dk"
+paginate: 100
+author:
+  - name: "Martin Christiansen"
+    email: 'test@test.test'
+    url: martinmch.com/authors/martin
+  - name: "Trine Christiansen"
+    email: 'test@test.test'
+theme: 'arabica'
+pluralizelisttitles: "false"
+defaultContentLanguage: "da"
+
+params:
+  logoTitle: "b.christiansen"
+  description: "Vores hjørne af internettet"

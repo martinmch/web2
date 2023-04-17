@@ -1,0 +1,10 @@
+{{ $inner := replace .Inner "\n " " " }}
+{{ $inner = trim $inner "\n" }}
+<p class='chordlines'>
+    {{- range (split $inner "\n") -}}
+    <span class="chordline">{{- . | safeHTML -}}</span>
+    <br>
+    {{- end -}}
+</p>
+{{- "" -}}
+

@@ -1,0 +1,8 @@
+<p class='chordlines chorus'>
+{{ .Page.Scratch.Set "chorus" .Inner }}
+{{ range (split (trim .Inner "\n") "\n") }}
+<span class="chordline">
+    {{ . }}
+</span> <br>
+{{ end }}
+</p>

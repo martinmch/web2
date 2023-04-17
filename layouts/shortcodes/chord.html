@@ -1,0 +1,4 @@
+{{- if not (.Page.Scratch.Get "hasChords") -}}
+    {{- .Page.Scratch.Set "hasChords" 1 -}}
+{{- end -}}
+<strong><span>[</span>{{- .Get 0 -}}<span>]</span></strong>

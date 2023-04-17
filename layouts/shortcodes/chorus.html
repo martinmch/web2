@@ -1,0 +1,10 @@
+{{ with .Page.Scratch.Get "chorus" }}
+    <details class='chordlines chorus repeat'>
+        <summary style='opacity:0.5'>.:{{ i18n "repeat_chorus" }}:.</summary>
+    {{ range (split (trim . "\n") "\n") }}
+    <span class="chordline">
+        {{ . }}
+    </span><br>
+    {{ end }}
+    </details> 
+{{ end }}
