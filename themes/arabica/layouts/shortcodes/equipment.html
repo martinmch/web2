@@ -1,0 +1,5 @@
+{{ $name := (.Get "name") }}
+{{ $quantity := default "" (.Get "quantity") }}
+{{ $show := (.Get "show") }}
+{{ .Page.Scratch.Add "Equipment" (slice ( $name ) ) }}
+<span class='equipment'>{{- default $name $show -}}</span>

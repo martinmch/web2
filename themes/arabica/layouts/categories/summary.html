@@ -1,0 +1,8 @@
+{{ $date := .Date | time.Format (site.Params.dateFormat | default "January 02") }}
+{{ $lastmod := .Lastmod | time.Format (site.Params.dateFormat | default "January 02, 2006") }}
+
+<a href="{{ .RelPermalink | safeURL }}">{{ .Title }}</a>
+{{ if ne .Date .Lastmod }}
+{{- i18n "updated_on" | lower }} {{ $lastmod }}
+{{ end }}
+{{ .Description }}

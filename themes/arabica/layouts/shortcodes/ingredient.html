@@ -1,0 +1,6 @@
+{{- $name := (.Get "name") -}}
+{{- $quantity := default "" (.Get "quantity") -}}
+{{- $show := (.Get "show") -}}
+{{- .Page.Scratch.SetInMap "Ingredients" $name $quantity -}}
+<span class='ingredient'>{{- (default $name $show) -}}</span>
+{{- "" -}}

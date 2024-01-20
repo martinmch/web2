@@ -1,0 +1,24 @@
+[composed_by]
+  other = 'af'
+
+[updated_on]
+  other = 'Opdateret d.'
+
+[published_on]
+  other = 'Udgivet d.'
+
+[latest_publications]
+  other = 'Seneste indlæg'
+
+[recipes.ingredient]
+  one = 'ingrediens'
+  other = 'ingredienser'
+
+[recipes.equipment]
+  other = 'udstyr'
+
+[recipes.approach]
+  other = 'fremgangsmåde'
+
+[repeat_chorus]
+  other = 'Gentag omkvæd'

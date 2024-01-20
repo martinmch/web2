@@ -1,0 +1,29 @@
+{{ define "body_class" }}tag-template{{ end }}
+{{ define "title" }}{{ .Title }}{{ end }}
+{{ define "main" }}
+    {{ with .Content }}
+        {{ . }}<hr>
+    {{ end }}
+
+
+    {{ $pages := .Pages }}
+    {{ if .IsHome }}
+        {{ $pages = where .Site.RegularPages "Type" "in" site.Params.mainSections }}
+    {{ end }}
+
+    {{ if gt (len $pages) 0 }}
+
+        {{ $paginator := (.Paginate ($pages.GroupByDate "2006")) }}
+            <div class="extra-pagination">
+                {{ partial "pagination.html" . }}
+            </div>
+            <ol style='list-style:none; padding-left: 0;'>
+            {{ range $paginator.PageGroups }}
+                    {{ range .Pages }}
+                        <li> {{ .Render "summary" }}
+                    {{ end }}
+            {{ end }}
+            </ol>
+        {{ partial "pagination.html" . }}
+    {{ end }}
+{{ end }}

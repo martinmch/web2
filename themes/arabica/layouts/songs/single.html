@@ -1,0 +1,41 @@
+{{ define "main" }}
+    <h2>{{ .Title }}</h2>
+    <p style='font-size:.7em'>
+    {{ with .Params.categories }}
+        Categories:
+        {{ range . }}
+        <a href="{{ "categories/" | absURL}}{{ . | urlize }}">{{ . }}</a> </li>
+    {{ end }} <br>
+    {{ end }}
+    {{ with .Params.tags }}
+        Tags:
+            {{ range . }}
+                <a href="{{ "tags/" | absURL}}{{ . | urlize }}">{{ . }}</a>
+        {{ end }} <br>
+    {{ end }}
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Lyricist</th>
+                <th>Artist</th>
+                <th>Composer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ .Params.lyricist }}</td>
+                <td>{{ .Params.artist }}</td>
+                <td>{{ .Params.composer }}</td>
+            </tr>
+        </tbody>
+    </table>
+    {{ with .Page.Scratch.Get "hasChords" }}
+    <button style='float:right' id="chordButton" onClick="toggleChords();">
+    Hide chords
+    </button>
+    {{ end }}
+
+    {{ .Content }}
+{{ end }}

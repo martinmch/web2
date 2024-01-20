@@ -1,0 +1,27 @@
+{{ define "body_class" }}page-template{{ end }}
+{{ define "main" }}
+<main class="content" role="main">
+  <article class="post page">
+    <header class="post-header">
+      <h1 class="post-title">{{ .Title }}</h1>
+      <p class="byline">
+        by <span class="author">
+        {{- if .Params.author }}
+            {{- $author_type := (printf "%T" .Params.author) }}
+            {{- if (or (eq $author_type "[]string") (eq $author_type "[]interface {}")) }}
+                {{- (delimit .Params.author ", " ) }}
+            {{- else }}
+                {{- .Params.author }}
+            {{- end }}
+        {{- else if site.Author.name }}
+            {{- site.Author.name }}
+        {{- end -}}
+        </span>
+      </p>
+    </header>
+    <section class="post-content">
+      {{ .Content }}
+    </section>
+  </article>
+</main>
+{{ end }}

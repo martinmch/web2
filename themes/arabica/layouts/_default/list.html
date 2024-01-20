@@ -1,0 +1,31 @@
+{{ define "body_class" }}tag-template{{ end }}
+{{ define "title" }}{{ .Title }}{{ end }}
+{{ define "main" }}
+    {{ with .Content }}
+        {{ . }}<hr>
+    {{ end }}
+
+
+    {{ $pages := .Pages }}
+    {{ if .IsHome }}
+        {{ $pages = where .Site.RegularPages "Type" "in" site.Params.mainSections }}
+    {{ end }}
+
+    {{ if gt (len $pages) 0 }}
+        <h2>{{ i18n "latest_publications" }}</h2>
+
+        {{ $paginator := (.Paginate ($pages.GroupByDate "2006")) }}
+            <div class="extra-pagination">
+                {{ partial "pagination.html" . }}
+            </div>
+            {{ range $paginator.PageGroups }}
+                <h4><time datetime="{{ .Key }}"> {{ .Key }} </time></h4>
+                <ol style='list-style:none; padding-left: 0;'>
+                    {{ range .Pages }}
+                        <li> {{ .Render "summary" }}
+                    {{ end }}
+                </ol>
+            {{ end }}
+        {{ partial "pagination.html" . }}
+    {{ end }}
+{{ end }}

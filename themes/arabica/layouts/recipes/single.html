@@ -1,0 +1,56 @@
+{{ define "body_class" }}page-template{{ end }}
+{{ define "main" }}
+<main class="content" role="main">
+  <article class="post page">
+    <header class="post-header">
+      <h1 class="post-title">
+          {{ .Title }}
+          {{- if not .Params.firstcooked }}
+          {{ emojify ":new:" }}
+          {{ end }}
+      </h1>
+      <p class="byline">
+        {{- if .Params.author }}
+            {{ i18n "composed_by" }}
+            <span class="author">
+                {{- $author_type := (printf "%T" .Params.author) }}
+                {{- if (or (eq $author_type "[]string") (eq $author_type "[]interface {}")) }}
+                    {{- (delimit .Params.author ", " ) }}
+                {{- else }}
+                    {{- .Params.author }}
+                {{- end }}
+            </span>
+        {{- end -}}
+      </p>
+    </header>
+    <section class="post-content">
+      {{ .Summary }}
+      {{ with .Scratch.Get "Ingredients" }}
+        <h2 id='{{ i18n  "recipes.ingredient" | anchorize }}'>
+            {{ i18n "recipes.ingredient" (len .) | title }}
+        </h2>
+        <ul>
+          {{ range $key, $value := . }}
+            <li>{{ $value }} {{ $key }}</li>
+          {{ end }}
+        </ul>
+      {{ end }}
+      {{ with .Scratch.Get "Equipment" }}
+        <h2 id='{{ i18n  "recipes.equipment" | anchorize }}'>
+            {{ i18n  "recipes.equipment" | title}}
+        </h2>
+        <ul>
+            {{ range . }}
+            <li>{{ . }}</li>
+            {{ end }}
+        </ul>
+      {{ end }}
+
+        <h2 id='{{ i18n  "recipes.approach" | anchorize }}'>
+            {{ i18n  "recipes.approach" | title}}
+        </h2>
+        {{ .Content }}
+    </section>
+  </article>
+</main>
+{{ end }}

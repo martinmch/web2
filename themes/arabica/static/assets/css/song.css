@@ -1,0 +1,32 @@
+.chorus {
+    border-left: .2em black solid;
+    padding-left:1em;
+}
+
+.chordlines {
+    line-height: 2.5;
+    margin-bottom: 2em;
+}
+
+.chordline {
+    position:relative;
+}
+
+.chordline strong {
+   position:absolute;
+   top:-1em;
+   font:bold 75%/1 sans-serif;
+   color:green;
+}
+
+.chordline strong span {
+    display:none;
+}
+
+#song-info {
+    margin-bottom: 2em;
+}
+
+.ingredient {
+    color: #ff9933;
+}

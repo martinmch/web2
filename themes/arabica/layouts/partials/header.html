@@ -1,0 +1,27 @@
+<header id="top-of-site">
+    <div>
+        <h3>
+            <a href="{{ "/" | relLangURL }}">
+                {{ with .Site.Params.logoTitle }}
+                    {{ . | safeHTML }}
+                {{ else }}
+                    {{ .Site.Title }}
+                {{ end }}
+            </a>
+            <br>
+            <small>{{ .Site.Params.description }}</small>
+        </h3>
+    </div>
+
+    <div class="nav">
+        {{ $pages := .Site.Sections }}
+        {{ if not $pages }}
+            {{ $pages = where .Sections "Params.hidden" "==" nil }}
+        {{ end }}
+
+        {{ $currentPage := . }}
+        {{ range $pages }}
+            <a href="{{ .Permalink | relLangURL | safeURL }}">{{ .Name }}</a>
+        {{ end }}
+    </div>
+</header>
